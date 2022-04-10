@@ -199,11 +199,11 @@ int main(int argc, char *argv[]){
 void UpdateGraphics(){
 	//draw some stuff into the buffer
     //surface to texture
-    SDL_BlitScaled(chip8sec, NULL, chip8win, NULL);
+    SDL_BlitScaled(chip8sec, NULL, chip8win, NULL);			//Use this function to perform a scaled surface copy to a destination surface.
     // Update the intermediate texture with the contents of the RGBA buffer.
-    SDL_UpdateTexture(texture, NULL, chip8win->pixels, chip8win->pitch);
+    SDL_UpdateTexture(texture, NULL, chip8win->pixels, chip8win->pitch);//Update the given texture rectangle with new pixel data.
     //SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);			//Copy a portion of the texture to the current rendering target.
     SDL_RenderPresent(renderer);
 }
 void CPU_Init(){
@@ -230,15 +230,15 @@ void Video_Init(){//Inicia Janela, surface e texturas
             320,
             0
     );
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED); //SDL_CreateRGBSurface
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, 640, 320);
     chip8sec = SDL_CreateRGBSurface(0, 64, 32, 32, 0, 0, 0, 0);
     chip8win = SDL_CreateRGBSurface(0, 640, 320, 32, 0, 0, 0, 0);
     //SDL_RenderSetScale(renderer, 10, 10);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //Set the color used for drawing operations (Rect, Line and Clear). https://wiki.libsdl.org/SDL_SetRenderDrawColor
+    SDL_RenderClear(renderer);			    //Clear the current rendering target with the drawing color. https://wiki.libsdl.org/SDL_RenderClear
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer);		    //Update the screen with any rendering performed since the previous call. https://wiki.libsdl.org/SDL_RenderPresent
 }	
 
 void LoadFont(){
