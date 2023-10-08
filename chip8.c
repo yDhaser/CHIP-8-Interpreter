@@ -110,6 +110,7 @@ void CPU_Cycle(uint16_t opcode){
 					break;
 				case 0x000A:
 					iF00A();
+					break;
 				case 0x001E:
 					iF01E();
 					break;
